@@ -12,7 +12,8 @@ type Variables = {
 
 type Bindings = {
 	WORKERLINKS_SECRET: string
-	PLAUSIBLE_HOST?: string
+    PLAUSIBLE_HOST?: string
+    NOT_FOUND_URL?: string
 	KV: KVNamespace
 	kv: KVNamespace
 	ENABLE_INDEX_FORM: boolean
@@ -131,10 +132,15 @@ async function handleGetHead(c: Context) {
 	const urlResult = await c.env.KV.get(c.get('key'))
 
 	if (urlResult == null) {
-		return c.json(
-			{ code: '404 Not Found', message: 'Key does not exist.' },
-			404,
-		)
+		// If the NOT_FOUND_URL is set, redirect to it.
+		if (c.env.NOT_FOUND_URL && c.env.NOT_FOUND_URL !== '') {
+			return c.redirect(c.env.NOT_FOUND_URL, 302)
+		} else {
+			return c.json(
+				{ code: '404 Not Found', message: 'Key does not exist.' },
+				404,
+			)
+		}
 	} else {
 		const searchParams = new URL(c.req.url).searchParams
 		const newUrl = new URL(urlResult)

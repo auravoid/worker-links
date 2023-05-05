@@ -140,6 +140,10 @@ You can also view URLs from your Cloudflare Dashboard:
 
 To get statistics for your short URLs with Plausible Analytics, define a `PLAUSIBLE_HOST` secret set to the URL of your Plausible instance. For example, `https://plausible.io/`.
 
+## 404 Redirect
+
+If you want to redirect to a custom 404 page, define a `NOT_FOUND_URL` secret set to the URL of your 404 page. For example, `https://erisa.uk/404`.
+
 ## Security
 
 This code is relatively simple but still, if you find any security issues that can be exploited publicly, please reach out to me via email: `erisa (at) erisa.uk` with any relevant details.

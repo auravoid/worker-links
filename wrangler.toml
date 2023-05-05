@@ -17,3 +17,11 @@ route = { pattern = "erisa.link/*", zone_name = "erisa.link" }
 
 [vars]
 ENABLE_INDEX_FORM = false
+
+# Optional to set 404 to a custom page
+# NOT_FOUND_URL = "https://erisa.uk/404"
+NOT_FOUND_URL = ""
+
+# Optional to set up Plausible analytics
+# PLAUSIBLE_HOST = "https://plausible.io/"
+PLAUSIBLE_HOST = ""
